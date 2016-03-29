@@ -14,19 +14,6 @@ import os
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
-
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-# try to load local_settings.py if it exists
-try:
-      from local_settings import *
-except Exception as e:
-      pass
-
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -87,7 +74,27 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+# Database                                                                                                              
+# https://docs.djangoproject.com/en/1.9/ref/settings/#databases                                                         
+DATABASES = {                                                                                                           
+    'default': {                                                                                                        
+        'ENGINE': 'django.db.backends.sqlite3',                                                                         
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),                                                                   
+    }                                                                                                                   
+}  
+ 
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# try to load local_settings.py if it exists
+try:
+   from local_settings import *
+except Exception as e:
+   pass
+       
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
