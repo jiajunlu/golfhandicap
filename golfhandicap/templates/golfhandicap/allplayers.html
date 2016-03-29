@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% block bootstrap3_extra_head %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{% endblock %}
+
+{% block title %}Golf Handicap{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <form role="form" class="form-horizontal" action="{% url 'golfhandicap' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    <div class="row">
+        <div class="col-sm-8">
+                {% bootstrap_form course_form layout='horizontal' %}
+                 {% bootstrap_form_errors course_form layout='inline' %}
+            </div>
+        <div class="col-sm-2">
+           {% buttons %}
+               <button type="submit" class="btn btn-primary" layout='horizontal'>
+                 {% bootstrap_icon "star" %} Get course handicap
+               </button>
+           {% endbuttons %}
+        </div>
+    </div>
+    </form>
+</div>
+<div class="container-fluid">
+    {% if course_handi %}
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="list-group">
+            {% for player in Players %}
+            <li class="list-group-item">{{player.player.nick_name}}: {{player.player.course_handi}}</li>
+            {% endfor %}
+        </ul>
+        </div>
+    </div>
+    {% endif %}
+    {% for player in Players %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h5>Name: {{player.player.nick_name}}, Handicap: {{player.player.handicap}}, Course Handicap: {{player.player.course_handi}}</h5>
+            <div class="table-responsive">
+                <table id="mytable" class="table table-bordred table-striped">
+                <tr><th>#</th><th>Date</th><th>Course</th><th>Tee</th><th>Handicap</th><th>Slope</th><th>Score</th><th>Adj Score</th><th>Differential</th></tr>
+                <!-- Cycle through entries -->
+                {% for r in player.rounds %}
+                <tr><td>{% if r.used %}*{% endif %}{{forloop.counter}}.</td>
+                    <td>{{r.play_date}}</td>
+                    <td>{{r.course}}</td>
+                    <td>{{r.tee}}</td>
+                    <td>{{r.handicap}}</td>
+                    <td>{{r.slope}}</td>
+                    <td>{{r.score}}</td>
+                    <td>{{r.adjscore}}</td>
+                    <td>{{r.diff}}</td></tr>
+                {% endfor %}
+            </table>
+        </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h6><i><a href="https://en.wikipedia.org/wiki/Handicap_(golf)">Learn more about golf handicap system</a></i></h6>
+        </div>
+    </div>
+</div>
+<br/>
+<br/>
+<br/>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'bootstrap.html' %}
+
+{% comment not supported by django 1.9%}  
+{% load url from future %}
+{% endcomment %}
+
+{% load bootstrap3 %}
+
+{% block bootstrap3_content %}
+<div class="container">
+{% comment %}          {% include "header.html" %}   {% endcomment %}
+          <h1>{% block title %}(no title){% endblock %}</h1>
+          {% bootstrap_messages %}
+          {% block content %}(no content){% endblock %}
+          {% include "footer.html" %}
+</div>
+{% endblock %}
