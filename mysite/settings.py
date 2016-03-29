@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'v9o3)wgl#-j73(fe(l=*!((j%x*ca$k%@v@m-e868bb=^7n4xb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -74,27 +74,28 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-# Database                                                                                                              
-# https://docs.djangoproject.com/en/1.9/ref/settings/#databases                                                         
-DATABASES = {                                                                                                           
-    'default': {                                                                                                        
-        'ENGINE': 'django.db.backends.sqlite3',                                                                         
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),                                                                   
-    }                                                                                                                   
-}  
- 
+# try to load local_settings.py if it exists
+try:
+   from local_settings import *
+except Exception as e:
+   # Database
+   # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+   DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.sqlite3',
+           'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+       }
+   }
+
+
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# try to load local_settings.py if it exists
-try:
-   from local_settings import *
-except Exception as e:
-   pass
-       
+
+
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
