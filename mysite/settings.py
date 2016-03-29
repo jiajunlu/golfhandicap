@@ -14,7 +14,8 @@ import os
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 
-DATABASES['default'] =  dj_database_url.config(default=os.getenv('DATABASE_URL'))
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -39,7 +40,7 @@ SECRET_KEY = 'v9o3)wgl#-j73(fe(l=*!((j%x*ca$k%@v@m-e868bb=^7n4xb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
