@@ -111,7 +111,7 @@ def allplayers(request):
 def games(request):
     games = Game.objects.all().order_by('-game_date')
     for game in games:
-        scores = Score.objects.filter(game_id=game)
+        scores = Score.objects.filter(game_id=game).order_by('score')
         for score in scores:
             score.diff = usga_handicap_differential(score.adjusted_score,
                                                     game.course_handicap,
