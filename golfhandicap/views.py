@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Score, Player
+from .models import Score, Player, Game
 from .forms import CalculateCourseHandicapForm
 from operator import itemgetter
 
@@ -106,3 +106,16 @@ def allplayers(request):
     return render(request, 'golfhandicap/allplayers.html', {'course_form': form,
                                                             'Players': output,
                                                             'course_handi': course_handi})
+
+
+def games(request):
+    games = Game.objects.all().order_by('-game_date')
+    for game in games:
+        scores = Score.objects.filter(game_id=game)
+        for score in scores:
+            score.diff = usga_handicap_differential(score.adjusted_score,
+                                                    game.course_handicap,
+                                                    game.course_slope)
+        game.scores = scores
+        
+    return render(request, 'golfhandicap/games.html', {'Games': games})

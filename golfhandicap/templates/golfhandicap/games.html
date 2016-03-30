@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% block bootstrap3_extra_head %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{% endblock %}
+
+{% block title %}Golf Handicap{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    {% for game in Games %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h5>{{game.game_date}}, {{game.course}}, Tee({{game.get_tee_display}}), Handicap({{game.course_handicap}}), Slope({{game.course_slope}})</h5>
+            <div class="table-responsive">
+                <table id="mytable" class="table table-bordred table-striped">
+                <tr><th>#</th><th>Player</th><th>Score</th><th>Adj Score</th><th>Differential</th></tr>
+                <!-- Cycle through entries -->
+                {% for score in game.scores %}
+                <tr><td>{{forloop.counter}}.</td>
+                    <td>{{score.player}}</td>
+                    <td>{{score.score}}</td>
+                    <td>{{score.adjusted_score}}</td>
+                    <td>{{score.diff}}</td></tr>
+                {% endfor %}
+            </table>
+        </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h6><i><a href="https://en.wikipedia.org/wiki/Handicap_(golf)">Learn more about golf handicap system</a></i></h6>
+        </div>
+    </div>
+</div>
+<br/>
+<br/>
+<br/>
+{% endblock %}
