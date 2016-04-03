@@ -22,6 +22,8 @@ from golfhandicap import views as golf_views
 
 urlpatterns = [
     url(r'^$', golf_views.index),
+    url(r'^allplayers/$', golf_views.allplayers),
+    url(r'^games/$', golf_views.games),
     url(r'^admin/', admin.site.urls),
     url(r'golfhandicap/', include('golfhandicap.urls')),
 ]

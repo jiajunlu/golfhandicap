@@ -8,10 +8,10 @@
 
 {% block bootstrap3_content %}
 <div class="container">
-{% comment %}          {% include "header.html" %}   {% endcomment %}
-          <h1>{% block title %}(no title){% endblock %}</h1>
-          {% bootstrap_messages %}
-          {% block content %}(no content){% endblock %}
-          {% include "footer.html" %}
+    {% include "header.html" %}
+    <h1>{% block title %}(no title){% endblock %}</h1>
+    {% bootstrap_messages %}
+    {% block content %}(no content){% endblock %}
+    {% include "footer.html" %}
 </div>
 {% endblock %}
