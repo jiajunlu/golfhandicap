@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% block bootstrap3_extra_head %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{% endblock %}
+
+{% block title %}Friendship Rules{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+          <h2>The Name of the Game</h2>
+          <p>The name of the game is fun! The league is meant to be competitive as well as social. The game has rules and some of us take those rules seriously, but don't go overboard. What does it hurt to offer your opponent a second try if he/she duffs one now and then? At the same time, do not take liberties with the rules when it's not agreed upon by your opponent.</p>
+          <h2>Pace of Play</h2>
+          <p>With that in mind, we have a maximum limit of strokes a player can take on a hole. The maximum score on any hole is 5-over par. Thus, once you hit your 4th shot over par, please pick up your ball and continue to the next hole. </p>
+          <h2>Friendship Rules vs. The USGA</h2>
+          <p>All rules, as defined by the USGA, apply with the exceptions that are outlined here. When the friendship deviates from the USGA, it is strictly in the interest of speeding play and having fun.</p>
+<dl class="dl-horizontal">
+<dt>Preferred Lie</dt>
+<dd><p>When a ball lies in the fairway (of the hole being played), it may be moved slightly to get a better lie. This allows for a normal shot under adverse course conditions. 
+  The ball is not to be moved to gain an "unfair advantage". An unfair advantage would be moving the ball to get a better angle or avoid an obstacle between the ball and the intended target. A ball in the rough may not be moved without incurring a penalty. This is legal under USGA Appendix I, 4b.</p></dd>
+
+<dt>Out of Bounds/Lost Ball</dt>
+<dd><p>Out of bounds is marked by white stakes. Note that the fences/course boundaries along the side of the road are completely out of bounds. 
+  Any ball touching the "Out of Bounds" line is considered OB. Consult your opponent before moving or hitting your ball. balls out of play. Specifically, a lost ball, ball in water, ball out of bounds.</p></dd>
+
+<dt>Casual water</dt>
+<dd><p>When a ball lands in casual water, the ball may be moved two club lengths out of the hazard, no closer to the hole. Casual water is a significant amount of water that is not intended to be a hazard on the course. 
+  Casual water on the putting green is slightly different. The ball may be moved sideways out of the water but never closer to the hole or into a position that is an easier putt.
+This is normally covered under USGA Rule 25.</p></dd>
+
+<dt>Embedded ball</dt>
+<dd><p>A ball that becomes embedded, (lies deep in the turf such that it is not playable), may be removed from the hole and moved in the same manner as a ball in casual water. This applies to the fairway, fringe and green only.
+This is normally covered under USGA Rule 25.</p></dd>
+
+<dt>Temporary Greens</dt>
+<dd><p>In the event that the course has installed a temporary green, the following rule applies. A ball driven or chipped within one club length, is considered holed out with a one putt. If a ball lands within three club lengths, 
+  the ball is considered holed after two putts. Please do not chip or putt these shots. Just pick up your ball and add the correct number of strokes and move to the next hole.</p></dd>
+
+<dt>Bunker Rule</dt>
+<dd><p>Since everyone would like play on a world class course, we are going to pretend that we are. If your ball should land in the bunker come to rest in a foot print or some other such unnatural obstruction,
+   you may first rake the sand and replace the ball.</p></dd>
+
+<dt>The Tough Lie Rule</dt>
+<dd><p>If your ball should land in area that you would rather not hit from, (examples: gravel area, heavy roots, very close to tree and others), the following rule(s) apply. 
+  There are listed in the order of preference with the sole motivation to keep play moving, have fun and not risk injury to yourself or your equipment:</p>
+  <ol>
+    <li><p>The "Punch Out" only option. The ball may be moved slightly such that a clear punch shot can be made, with the sole purpose of hitting 90 degrees back onto the fairway. 
+      This is intended to keep play moving. The movement of the ball is free but the shot out counts.
+  Note: You are not allowed to advance the ball towards the green under this circumstance. Failure to adhere to this rule will result in loss of hole.</p></li>
+
+  <li><p>The "Drop and Go" option. The player may move the ball as far back, in a straight line, towards the point where the ball was originally hit. 
+    The straight line is not from the ball to the hole. The cost for this is one stroke.
+     Then the player make take his next shot. In essence, this is "stroke and distance" as described in by the USGA.</p></li>
+
+  <li><p>The play it where it lies option. Without moving the ball, the player may simply play it as any other stroke and take his/her chances.</p></li>
+</li>
+</ol>
+</dd>
+</dl>
+<h2>Courtesy and Technicalities</h2>
+
+<p>Before you move your ball with respect to applying a rule, discuss it with your opponent first. In general, an agreement between opponents will always be honored. If an agreement cannot be reached, keep playing and agree to have the rules committee settle it after the match is finished.</p>
+
+<p>The USGA is full of little nit-picky rules; so much so that golf officials must go to school to learn, not only the rules, but how to apply them. We strive to play by the rules, but not get bogged down with the extreme technicalities of the rules. Use your judgment. If there is any doubt, play your match as if there was no infraction, and bring it to the attention of the league's rules committee.</p>
+
+<p>However, it is to your benefit to read and understand the current USGA rules. If you understand the rules, there is less of a chance that a controversy will arise during play. </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h6><i><a href="https://en.wikipedia.org/wiki/Handicap_(golf)">Learn more about golf handicap system</a></i></h6>
+        </div>
+    </div>
+</div>
+<br/>
+<br/>
+<br/>
+{% endblock %}
